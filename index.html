@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Native | Creative on subscription</title>
+<meta name="description" content="A creative team on subscription for growing brands. Brief on WhatsApp. Get on-brand work back in days.">
+<meta name="theme-color" content="#0A0A0A">
+<!-- PILOT: keeps the page out of Google. Delete this line when you are ready to be found. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --fg: #F2F2F2;
+    --muted: #9A9A9A;
+    --line: #262626;
+    --field: #3A3A3A;
+    --error: #FF6B6B;
+    --max: 1180px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Poppins", "Aptos", system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .mark { font-weight: 600; font-size: 18px; letter-spacing: -0.01em; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { text-decoration: none; font-size: 14px; color: var(--muted); }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-links .btn { color: var(--bg); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 14px 26px;
+    font: 500 15px/1 "Poppins", system-ui, sans-serif;
+    border: 1px solid var(--fg); border-radius: 0;
+    background: var(--fg); color: var(--bg);
+    text-decoration: none; cursor: pointer;
+    transition: opacity .15s ease;
+  }
+  .btn:hover { opacity: .85; }
+  .btn.ghost { background: transparent; color: var(--fg); }
+  .btn.small { padding: 10px 18px; font-size: 14px; }
+  .btn.text { border-color: transparent; background: transparent; color: var(--muted); padding-left: 0; padding-right: 0; }
+  .btn.text:hover { color: var(--fg); opacity: 1; }
+
+  /* Hero */
+  .hero { padding: 112px 0 96px; }
+  .kicker { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  h1 {
+    font-size: clamp(56px, 11vw, 148px);
+    font-weight: 700; line-height: .92; letter-spacing: -0.045em;
+    margin: 28px 0 36px;
+  }
+  .lede { font-size: clamp(20px, 2.4vw, 28px); font-weight: 500; letter-spacing: -0.01em; }
+  .hero p.body { max-width: 560px; color: var(--muted); margin: 16px 0 40px; font-size: 17px; }
+  .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Sections */
+  section.block { border-top: 1px solid var(--line); padding: 96px 0; }
+  .grid { display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  .label { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .label b { color: var(--fg); font-weight: 500; margin-right: 10px; }
+  h2 { font-size: clamp(34px, 5vw, 60px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; margin-bottom: 48px; }
+
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .three > div { padding: 28px 28px 8px 0; }
+  .three > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+  .three h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .three p { color: var(--muted); }
+  .three .num { display: block; font-size: 13px; color: var(--muted); letter-spacing: .12em; margin-bottom: 18px; }
+  .three .hl h3 { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+
+  /* Plans */
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .plan { border: 1px solid var(--line); padding: 32px 28px; display: flex; flex-direction: column; }
+  .plan.featured { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .plan.featured p, .plan.featured li, .plan.featured .price { color: #333; }
+  .tag { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); min-height: 18px; }
+  .plan.featured .tag { color: #555; }
+  .plan h3 { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin: 18px 0 4px; }
+  .plan .sub { font-weight: 500; margin-bottom: 18px; }
+  .plan p { color: var(--muted); margin-bottom: 20px; }
+  .plan ul { list-style: none; margin-bottom: 28px; flex: 1; }
+  .plan li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+  .plan.featured li { border-color: #D4D4D4; }
+  .price { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+  .plan .btn { width: 100%; }
+  .plan.featured .btn { background: var(--bg); color: var(--fg); border-color: var(--bg); }
+
+  /* Form */
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 32px; }
+  .full { grid-column: 1 / -1; }
+  .field label, legend {
+    display: block; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .req { color: var(--fg); }
+  input[type=text], input[type=tel], input[type=email], input[type=date], select, textarea {
+    width: 100%; background: transparent; color: var(--fg);
+    border: 0; border-bottom: 1px solid var(--field); border-radius: 0;
+    padding: 10px 0 12px; font: 400 17px/1.4 "Poppins", system-ui, sans-serif;
+    color-scheme: dark; appearance: none; -webkit-appearance: none;
+  }
+  select {
+    background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+    background-position: calc(100% - 14px) 52%, calc(100% - 8px) 52%;
+    background-size: 6px 6px; background-repeat: no-repeat; padding-right: 28px;
+  }
+  select option { background: #161616; color: var(--fg); }
+  textarea { resize: vertical; min-height: 84px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--fg); }
+  .hint { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .err { font-size: 13px; color: var(--error); margin-top: 8px; display: none; }
+  .invalid .err { display: block; }
+  .invalid input, .invalid select, .invalid textarea { border-bottom-color: var(--error); }
+  fieldset { border: 0; }
+
+  .choices { display: flex; flex-wrap: wrap; gap: 10px; }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice span {
+    display: inline-block; padding: 10px 18px; border: 1px solid var(--field);
+    font-size: 15px; cursor: pointer; user-select: none; transition: all .12s ease;
+  }
+  .choice input:checked + span { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .choice input:focus-visible + span { outline: 2px solid var(--fg); outline-offset: 3px; }
+  .invalid .choice span { border-color: var(--error); }
+
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .note { font-size: 13px; color: var(--muted); }
+  .status { font-size: 15px; min-height: 24px; }
+  .setup {
+    border: 1px dashed var(--error); color: var(--error); padding: 14px 18px;
+    font-size: 14px; margin-bottom: 32px; display: none;
+  }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0 56px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+  footer .mark { color: var(--fg); }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; gap: 20px; }
+    .three, .plans { grid-template-columns: 1fr; }
+    .three > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+    .nav-links a:not(.btn) { display: none; }
+  }
+  @media (max-width: 640px) {
+    form { grid-template-columns: 1fr; }
+    .hero { padding: 72px 0 64px; }
+    section.block { padding: 72px 0; }
+    .actions .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="mark" href="#top">Native</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#plans">Plans</a>
+      <a class="btn small" href="#brief">Send a brief</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO. Edit the words freely. -->
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker">Native · Creative on subscription</p>
+      <h1>Subscribe.<br>Brief.<br>Receive.</h1>
+      <p class="lede">AI first in every brief. Human where it counts.</p>
+      <p class="body">A creative team on subscription for growing brands. Send a brief on WhatsApp. Get on-brand work back in days, checked by people before it reaches you.</p>
+      <div class="ctas">
+        <a class="btn" href="#brief">Send a brief</a>
+        <a class="btn ghost" href="#plans">See plans</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- WHY -->
+  <section class="block" id="why">
+    <div class="wrap grid">
+      <p class="label"><b>01</b>Why Native</p>
+      <div>
+        <h2>The old choices<br>don't fit.</h2>
+        <div class="three">
+          <div>
+            <h3>Agencies sell hours.</h3>
+            <p>Great work, built for big budgets and long timelines.</p>
+          </div>
+          <div>
+            <h3>Free tools sell templates.</h3>
+            <p>Fast and cheap. But your brand ends up looking like everyone else's.</p>
+          </div>
+          <div class="hl">
+            <h3>Native sells outcomes.</h3>
+            <p>Agent speed with agency craft. Every piece built on your own brand rules.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section class="block" id="how">
+    <div class="wrap grid">
+      <p class="label"><b>02</b>How it works</p>
+      <div>
+        <h2>Three steps.<br>No meetings needed.</h2>
+        <div class="three">
+          <div>
+            <span class="num">01</span>
+            <h3>Subscribe</h3>
+            <p>Pick a plan. We set up your brand kit: your tone, colours, claims and rules.</p>
+          </div>
+          <div>
+            <span class="num">02</span>
+            <h3>Brief</h3>
+            <p>Send a brief on WhatsApp or right here. It takes five minutes.</p>
+          </div>
+          <div>
+            <span class="num">03</span>
+            <h3>Receive</h3>
+            <p>Agents build. People check. You get work that is on brand, every time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS. Change "Pilot pricing on request" to real prices when approved. -->
+  <section class="block" id="plans">
+    <div class="wrap grid">
+      <p class="label"><b>03</b>Plans</p>
+      <div>
+        <h2>Pick the weight<br>of the work.</h2>
+        <div class="plans">
+          <article class="plan featured">
+            <p class="tag">Start here</p>
+            <h3>Light</h3>
+            <p class="sub">Agent-led</p>
+            <p>High-volume work, fast. Agents build from your brand rules. A person checks every piece.</p>
+            <ul>
+              <li>Reels cut-downs from your films</li>
+              <li>Festive and offer posts</li>
+              <li>Every format from one key visual</li>
+              <li>Hindi and regional language versions</li>
+              <li>WhatsApp promo packs</li>
+            </ul>
+            <p class="price">Pilot pricing on request</p>
+            <a class="btn" href="#brief" data-plan="Light">Brief a Light job</a>
+          </article>
+          <article class="plan">
+            <p class="tag">&nbsp;</p>
+            <h3>Middle</h3>
+            <p class="sub">Agents and creatives</p>
+            <p>New campaign assets built on your brand. Creatives direct. Agents produce.</p>
+            <ul>
+              <li>New social campaigns</li>
+              <li>Product launch kits</li>
+              <li>Monthly content calendars</li>
+            </ul>
+            <p class="price">Pilot pricing on request</p>
+            <a class="btn ghost" href="#brief" data-plan="Middle">Brief a Middle job</a>
+          </article>
+          <article class="plan">
+            <p class="tag">&nbsp;</p>
+            <h3>Heavy</h3>
+            <p class="sub">Human-led</p>
+            <p>Big ideas, films and launches. Senior creative teams, with AI as the tool.</p>
+            <ul>
+              <li>Brand films</li>
+              <li>Launch campaigns</li>
+              <li>Brand platforms</li>
+            </ul>
+            <p class="price">Pilot pricing on request</p>
+            <a class="btn ghost" href="#brief" data-plan="Heavy">Brief a Heavy job</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIEF FORM -->
+  <section class="block" id="brief">
+    <div class="wrap grid">
+      <p class="label"><b>04</b>Brief us</p>
+      <div>
+        <h2>Brief us in<br>five minutes.</h2>
+        <div class="setup" id="setup" role="note">
+          Setup needed: add your WhatsApp number and email in <code>index.html</code>. Look for the lines marked EDIT ME.
+        </div>
+
+        <form id="briefForm" novalidate>
+          <div class="field" data-required>
+            <label for="name">Your name <span class="req">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name">
+            <p class="err" id="name-err">Please add your name.</p>
+          </div>
+          <div class="field" data-required>
+            <label for="business">Brand or business <span class="req">*</span></label>
+            <input type="text" id="business" name="business" autocomplete="organization">
+            <p class="err">Please add your brand or business name.</p>
+          </div>
+          <div class="field" data-required data-type="phone">
+            <label for="phone">WhatsApp number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+91 98xxx xxxxx">
+            <p class="err">Please add a phone number with at least 10 digits.</p>
+          </div>
+          <div class="field" data-type="email">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email">
+            <p class="err">That email doesn't look right.</p>
+          </div>
+
+          <div class="field full" data-required>
+            <label for="need">What do you need? <span class="req">*</span></label>
+            <select id="need" name="need">
+              <option value="">Choose one</option>
+              <option value="reels-cutdown" data-tier="Light">Reels cut-downs from a film</option>
+              <option value="festive-carousel" data-tier="Light">A festive carousel</option>
+              <option value="format-resize" data-tier="Light">One key visual in every format</option>
+              <option value="language-adaptation" data-tier="Light">Copy in Hindi or regional languages</option>
+              <option value="whatsapp-promo" data-tier="Light">A WhatsApp promo pack</option>
+              <option value="none" data-tier="Middle">New campaign assets</option>
+              <option value="none" data-tier="Heavy">A big idea, film or launch</option>
+              <option value="none">Not sure yet</option>
+            </select>
+            <p class="err">Please choose what you need.</p>
+          </div>
+
+          <fieldset class="field full" data-required data-group="plan">
+            <legend>Plan <span class="req">*</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="plan" value="Light"><span>Light</span></label>
+              <label class="choice"><input type="radio" name="plan" value="Middle"><span>Middle</span></label>
+              <label class="choice"><input type="radio" name="plan" value="Heavy"><span>Heavy</span></label>
+              <label class="choice"><input type="radio" name="plan" value="Not sure"><span>Not sure</span></label>
+            </div>
+            <p class="err">Please choose a plan, or "Not sure".</p>
+          </fieldset>
+
+          <div class="field full" data-required>
+            <label for="purpose">What is it for? <span class="req">*</span></label>
+            <textarea id="purpose" name="purpose" placeholder="Example: Drive orders for our new Diwali gift box"></textarea>
+            <p class="err">Please tell us what this is for.</p>
+          </div>
+          <div class="field full" data-required>
+            <label for="message">Key message and call to action <span class="req">*</span></label>
+            <textarea id="message" name="message" placeholder="Example: Gift a slower morning. Order on our website."></textarea>
+            <p class="err">Please add the key message.</p>
+          </div>
+
+          <fieldset class="field full">
+            <legend>Languages</legend>
+            <div class="choices">
+              <label class="choice"><input type="checkbox" name="lang" value="English" checked><span>English</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Hindi"><span>Hindi</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Hinglish"><span>Hinglish</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Tamil"><span>Tamil</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Telugu"><span>Telugu</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Bengali"><span>Bengali</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Marathi"><span>Marathi</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Kannada"><span>Kannada</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Malayalam"><span>Malayalam</span></label>
+              <label class="choice"><input type="checkbox" name="lang" value="Gujarati"><span>Gujarati</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field" data-required>
+            <label for="deadline">Deadline <span class="req">*</span></label>
+            <input type="date" id="deadline" name="deadline">
+            <p class="err">Please pick a deadline.</p>
+          </div>
+          <div class="field">
+            <label for="assets">Links to your files</label>
+            <input type="text" id="assets" name="assets" placeholder="Google Drive or Dropbox link">
+            <p class="hint">Links only. Please don't send large files on WhatsApp.</p>
+          </div>
+
+          <div class="full">
+            <div class="actions">
+              <button type="submit" class="btn" data-send="whatsapp">Send on WhatsApp</button>
+              <button type="submit" class="btn ghost" data-send="email">Email instead</button>
+              <button type="button" class="btn text" id="copyBtn">Copy brief</button>
+            </div>
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+            <p class="note">Your brief goes straight to our team on WhatsApp or email. This page stores nothing.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><span class="mark">Native</span>&nbsp;&nbsp;Creative on subscription.</span>
+    <span>Pilot · <span id="year">2026</span></span>
+  </div>
+</footer>
+
+<script>
+  /* ============================================================
+     EDIT ME: where briefs are sent.
+     whatsapp: country code + number, digits only. No +, no spaces.
+               Example for an Indian number: 919812345678
+     email:    the inbox that receives briefs.
+     ============================================================ */
+  const NATIVE = {
+    whatsapp: "910000000000",   // EDIT ME
+    email: "native@example.com" // EDIT ME
+  };
+
+  const PLACEHOLDER = NATIVE.whatsapp === "910000000000" || NATIVE.email === "native@example.com";
+  if (PLACEHOLDER) document.getElementById("setup").style.display = "block";
+
+  const form = document.getElementById("briefForm");
+  const statusEl = document.getElementById("status");
+  const need = document.getElementById("need");
+  const deadline = document.getElementById("deadline");
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Earliest deadline is today (local time)
+  const now = new Date();
+  deadline.min = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, "0"), String(now.getDate()).padStart(2, "0")].join("-");
+
+  // Plan buttons pre-select the plan
+  document.querySelectorAll("[data-plan]").forEach(btn => {
+    btn.addEventListener("click", () => setPlan(btn.dataset.plan, true));
+  });
+  // Choosing a need suggests a plan, unless one is already picked
+  need.addEventListener("change", () => {
+    const tier = need.selectedOptions[0] && need.selectedOptions[0].dataset.tier;
+    if (tier && !form.querySelector('input[name="plan"]:checked')) setPlan(tier, false);
+  });
+  function setPlan(value, force) {
+    const radio = form.querySelector('input[name="plan"][value="' + value + '"]');
+    if (radio && (force || !radio.checked)) { radio.checked = true; clearError(radio.closest(".field")); }
+  }
+
+  function val(id) { return document.getElementById(id).value.trim(); }
+  function clearError(field) { if (field) field.classList.remove("invalid"); }
+
+  form.addEventListener("input", e => clearError(e.target.closest(".field")));
+  form.addEventListener("change", e => clearError(e.target.closest(".field")));
+
+  function validate() {
+    let firstBad = null;
+    form.querySelectorAll(".field").forEach(field => {
+      let ok = true;
+      const input = field.querySelector("input, select, textarea");
+      if (field.dataset.group) {
+        ok = !!field.querySelector("input:checked");
+      } else if (field.hasAttribute("data-required")) {
+        ok = input.value.trim() !== "";
+      }
+      if (ok && field.dataset.type === "phone") {
+        ok = input.value.replace(/\D/g, "").length >= 10;
+      }
+      if (ok && field.dataset.type === "email" && input.value.trim() !== "") {
+        ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+      }
+      field.classList.toggle("invalid", !ok);
+      if (!ok && !firstBad) firstBad = field;
+    });
+    if (firstBad) {
+      const target = firstBad.querySelector("input, select, textarea");
+      target.focus({ preventScroll: true });
+      firstBad.scrollIntoView({ behavior: "smooth", block: "center" });
+      statusEl.textContent = "A few details are missing. Check the fields marked in red.";
+      return false;
+    }
+    return true;
+  }
+
+  function niceDate(iso) {
+    if (!iso) return "";
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+  }
+
+  function buildBrief() {
+    const option = need.selectedOptions[0];
+    const playbook = option.value && option.value !== "none" ? "playbook: " + option.value : "no playbook";
+    const plan = (form.querySelector('input[name="plan"]:checked') || {}).value || "Not sure";
+    const langs = Array.from(form.querySelectorAll('input[name="lang"]:checked')).map(i => i.value);
+    return [
+      "Native brief",
+      "",
+      "Name: " + val("name"),
+      "Business: " + val("business"),
+      "WhatsApp: " + val("phone"),
+      "Email: " + (val("email") || "Not given"),
+      "",
+      "Need: " + option.text + " (" + playbook + ")",
+      "Plan: " + plan,
+      "Languages: " + (langs.join(", ") || "Not given"),
+      "Deadline: " + niceDate(val("deadline")),
+      "",
+      "What it is for: " + val("purpose"),
+      "Key message: " + val("message"),
+      "Files: " + (val("assets") || "Not given"),
+      "",
+      "Sent from the Native website"
+    ].join("\n");
+  }
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const via = (e.submitter && e.submitter.dataset.send) || "whatsapp";
+    if (!validate()) return;
+    if (PLACEHOLDER) {
+      statusEl.textContent = "This page isn't connected yet. Add the WhatsApp number and email in index.html.";
+      return;
+    }
+    const text = buildBrief();
+    if (via === "email") {
+      const subject = "Native brief: " + val("business");
+      window.location.href = "mailto:" + NATIVE.email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
+      statusEl.textContent = "Your email app should open with the brief ready. Press send.";
+    } else {
+      window.open("https://wa.me/" + NATIVE.whatsapp + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+      statusEl.textContent = "WhatsApp should open with your brief ready. Press send.";
+    }
+  });
+
+  document.getElementById("copyBtn").addEventListener("click", async () => {
+    if (!validate()) return;
+    const text = buildBrief();
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      const t = document.createElement("textarea");
+      t.value = text; document.body.appendChild(t); t.select();
+      document.execCommand("copy"); t.remove();
+    }
+    statusEl.textContent = "Brief copied. Paste it anywhere.";
+  });
+</script>
+</body>
+</html>
