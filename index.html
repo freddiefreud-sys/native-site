@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Native | Creative on subscription</title>
-<meta name="description" content="A creative team on subscription for growing brands. Brief on WhatsApp. Get on-brand work back in days.">
+<meta name="description" content="Your brand's creative team, on subscription. Brief on WhatsApp. Get on-brand work back in days, checked by people.">
 <meta name="theme-color" content="#0A0A0A">
 <!-- PILOT: keeps the page out of Google. Delete this line when you are ready to be found. -->
 <meta name="robots" content="noindex, nofollow">
@@ -20,6 +20,11 @@
     --field: #3A3A3A;
     --error: #FF6B6B;
     --max: 1180px;
+    /* Sample brand palette: Saffron Lane Teas (fictional) */
+    --ink: #111111;
+    --paper: #F5F1E8;
+    --copper: #B5651D;
+    --flame: #F0B44C;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -79,10 +84,13 @@
 
   /* Sections */
   section.block { border-top: 1px solid var(--line); padding: 96px 0; }
-  .grid { display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  .grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
   .label { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
   .label b { color: var(--fg); font-weight: 500; margin-right: 10px; }
-  h2 { font-size: clamp(34px, 5vw, 60px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; margin-bottom: 48px; }
+  h2 { font-size: clamp(34px, 5vw, 60px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; margin-bottom: 32px; }
+  h3.sub-h { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin: 72px 0 20px; }
+  .intro { font-size: clamp(18px, 1.8vw, 21px); color: var(--muted); max-width: 720px; margin-bottom: 56px; }
+  .intro strong { color: var(--fg); font-weight: 500; }
 
   .three { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
   .three > div { padding: 28px 28px 8px 0; }
@@ -90,22 +98,183 @@
   .three h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; }
   .three p { color: var(--muted); }
   .three .num { display: block; font-size: 13px; color: var(--muted); letter-spacing: .12em; margin-bottom: 18px; }
-  .three .hl h3 { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+
+  /* Proposition */
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+  .pillars > div { padding: 28px 24px 8px 0; }
+  .pillars > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+  .pillars .num { display: block; font-size: 13px; color: var(--muted); letter-spacing: .12em; margin-bottom: 18px; }
+  .pillars h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .pillars p { color: var(--muted); font-size: 15px; }
+
+  .compare-wrap { overflow-x: auto; }
+  table.compare { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 15px; }
+  .compare th, .compare td { text-align: left; padding: 16px 16px 16px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .compare thead th { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .compare tbody th { color: var(--muted); font-weight: 400; width: 18%; }
+  .compare td { color: var(--muted); width: 27%; }
+  .compare .native { color: var(--fg); font-weight: 500; }
+  .compare thead .native { color: var(--fg); }
+
+  /* Work: tabs */
+  .note { font-size: 13px; color: var(--muted); }
+  .tabs { display: flex; gap: 0; border: 1px solid var(--line); width: fit-content; margin: 8px 0 40px; max-width: 100%; overflow-x: auto; }
+  .tab {
+    font: 500 15px/1.2 "Poppins", system-ui, sans-serif; color: var(--muted);
+    background: transparent; border: 0; padding: 14px 26px; cursor: pointer; text-align: left;
+  }
+  .tab small { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 400; margin-top: 4px; }
+  .tab + .tab { border-left: 1px solid var(--line); }
+  .tab[aria-selected="true"] { background: var(--fg); color: var(--bg); }
+  .tab[aria-selected="true"] small { color: #555; }
+
+  .tier-head { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+  .tier-head div { padding: 18px 18px 18px 0; }
+  .tier-head div + div { padding-left: 18px; border-left: 1px solid var(--line); }
+  .tier-head dt { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .tier-head dd { font-size: 15px; }
+
+  .samples { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .sample { border: 1px solid var(--line); min-width: 0; }
+  .canvas {
+    background: #141414; padding: 32px 28px;
+    display: flex; gap: 16px; align-items: flex-start;
+    overflow-x: auto; scroll-snap-type: x proximity;
+  }
+  .canvas > * { scroll-snap-align: start; flex: 0 0 auto; }
+  .canvas { scroll-padding-inline: 28px; }
+  .canvas.fit { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; overflow: visible; }
+  .canvas.fit > .f { width: 100%; }
+  .canvas.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px 20px; overflow: visible; }
+  .canvas.board .shot { width: auto; }
+  .canvas.board .r169 { width: 100%; }
+  .cap { padding: 20px 24px 22px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+  .cap h4 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+  .cap p { color: var(--muted); font-size: 14px; max-width: 520px; }
+  .cap .meta { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); align-self: flex-start; padding-top: 4px; }
+
+  /* Sample frames (the fictional brand's work) */
+  .f {
+    position: relative; overflow: hidden; border-radius: 6px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 14px; font-family: "Poppins", system-ui, sans-serif;
+  }
+  .f.paper { background: var(--paper); color: var(--ink); }
+  .f.ink { background: var(--ink); color: var(--paper); box-shadow: inset 0 0 0 1px #2A2A2A; }
+  .f.copper { background: var(--copper); color: var(--paper); }
+  .r916 { width: 150px; aspect-ratio: 9 / 16; border-radius: 16px; }
+  .r45 { width: 168px; aspect-ratio: 4 / 5; }
+  .r11 { width: 190px; aspect-ratio: 1 / 1; }
+  .r169 { width: 300px; aspect-ratio: 16 / 9; }
+  .f .tag { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
+  .f .big { font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; font-size: 21px; }
+  .f .mid { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; font-size: 15px; }
+  .f .small { font-size: 10px; line-height: 1.35; }
+  .f .wm { font-size: 9px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+  .f .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; }
+  .frame-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+
+  /* Simple illustrations */
+  .cup {
+    position: relative; width: 62%; aspect-ratio: 1 / 1; border-radius: 50%; margin: 6px auto;
+    background: radial-gradient(circle closest-side, #8A4B22 0 60%, #6E3A18 61% 63%, #FBF8F2 64% 76%, #E2D9C6 77% 100%);
+    box-shadow: 0 8px 20px rgba(0,0,0,.18);
+  }
+  .cup::after {
+    content: ""; position: absolute; left: 86%; top: 45%; width: 14%; height: 10%;
+    border-radius: 6px; background: #FBF8F2;
+  }
+  .cup.sm { width: 38%; }
+  .cup.xs { width: 26%; margin: 0; }
+  .pack {
+    width: 52%; aspect-ratio: 3 / 4.2; margin: 6px auto; border-radius: 3px;
+    background: var(--ink); display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 18px rgba(0,0,0,.2);
+  }
+  .pack.light { background: var(--paper); }
+  .pack span {
+    width: 92%; background: var(--copper); color: var(--paper); text-align: center;
+    font-size: 7px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 5px 2px; line-height: 1.3;
+  }
+  .diya { position: relative; width: 58px; height: 58px; margin: 6px auto; }
+  .diya::before {
+    content: ""; position: absolute; bottom: 0; left: 0; width: 58px; height: 22px;
+    background: var(--copper); border-radius: 0 0 29px 29px / 0 0 22px 22px;
+  }
+  .diya::after {
+    content: ""; position: absolute; bottom: 26px; left: 21px; width: 16px; height: 16px;
+    background: var(--flame); border-radius: 50% 0 50% 50%; transform: rotate(-45deg);
+    box-shadow: 0 0 18px 6px rgba(240,180,76,.45);
+  }
+  .f.copper .diya::before { background: var(--ink); }
+
+  /* Chat mock */
+  .chat { width: 300px; background: #1B1B1B; border-radius: 16px; padding: 14px; font-size: 13px; }
+  .chat-head { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid #2C2C2C; margin-bottom: 14px; }
+  .chat-head i { width: 30px; height: 30px; border-radius: 50%; background: var(--copper); display: inline-block; }
+  .chat-head b { font-weight: 500; font-size: 13px; display: block; }
+  .chat-head span { font-size: 11px; color: var(--muted); }
+  .bubble { background: var(--paper); color: var(--ink); border-radius: 12px 12px 12px 4px; padding: 12px 14px; line-height: 1.45; }
+  .bubble time { display: block; text-align: right; font-size: 10px; opacity: .55; margin-top: 6px; }
+
+  /* Middle: calendar and lists */
+  .idea { width: 100%; min-width: 280px; padding: 8px 4px; }
+  .idea .tag { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .idea h5 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin: 12px 0 16px; }
+  .idea p { color: var(--muted); max-width: 520px; font-size: 16px; }
+  table.cal { border-collapse: collapse; font-size: 13px; min-width: 640px; width: 100%; }
+  .cal th, .cal td { border: 1px solid #2A2A2A; padding: 10px; text-align: left; vertical-align: top; }
+  .cal th { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .cal td { color: var(--fg); }
+  .chip { display: inline-block; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; padding: 3px 6px; margin-bottom: 6px; border: 1px solid #444; color: var(--muted); }
+  .chip.reel { background: var(--copper); border-color: var(--copper); color: var(--paper); }
+  .chip.wa { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+  ul.kit { list-style: none; columns: 2; column-gap: 40px; min-width: 280px; width: 100%; }
+  ul.kit li { padding: 10px 0; border-bottom: 1px solid #2A2A2A; break-inside: avoid; font-size: 15px; }
+  ul.kit li span { color: var(--muted); font-size: 13px; margin-left: 6px; }
+
+  /* Heavy: platform and storyboard */
+  .platform { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; width: 100%; min-width: 280px; }
+  .platform h5 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin: 12px 0 16px; }
+  .platform .tag { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .platform p { color: var(--muted); }
+  .platform ol { list-style: none; counter-reset: p; }
+  .platform li { counter-increment: p; padding: 14px 0; border-bottom: 1px solid #2A2A2A; }
+  .platform li::before { content: "0" counter(p); font-size: 11px; color: var(--muted); letter-spacing: .14em; margin-right: 14px; }
+  .shot { width: 300px; }
+  .shot figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.45; }
+  .shot figcaption b { color: var(--fg); font-weight: 500; margin-right: 6px; }
+  .v-window { position: absolute; right: 14%; top: 16%; width: 22%; height: 34%; background: var(--paper); opacity: .12; }
+  .v-counter { position: absolute; left: 0; right: 0; bottom: 26%; height: 1px; background: #3A3A3A; }
+  .v-kettle { position: absolute; left: 22%; bottom: 26%; width: 16%; height: 22%; background: #2A2A2A; border-radius: 40% 40% 6px 6px; }
+  .v-leaves { position: absolute; inset: 0; background-image: radial-gradient(ellipse 5px 3px at 50% 50%, #5B2E12 98%, transparent 100%); background-size: 22px 16px; opacity: .55; }
+  .v-city { position: absolute; left: 0; right: 0; bottom: 0; height: 58%;
+    background:
+      linear-gradient(#262626, #262626) 4% 100% / 10% 70% no-repeat,
+      linear-gradient(#1E1E1E, #1E1E1E) 16% 100% / 8% 95% no-repeat,
+      linear-gradient(#2E2E2E, #2E2E2E) 27% 100% / 12% 55% no-repeat,
+      linear-gradient(#222, #222) 42% 100% / 9% 85% no-repeat,
+      linear-gradient(#2A2A2A, #2A2A2A) 54% 100% / 14% 65% no-repeat,
+      linear-gradient(#1C1C1C, #1C1C1C) 71% 100% / 8% 100% no-repeat,
+      linear-gradient(#262626, #262626) 82% 100% / 13% 75% no-repeat; }
+  .v-rush { position: absolute; left: 0; right: 0; bottom: 8%; height: 2px; background: repeating-linear-gradient(90deg, var(--flame) 0 18px, transparent 18px 34px); opacity: .7; }
+  .two-cups { display: flex; gap: 14%; justify-content: center; align-items: center; height: 100%; }
 
   /* Plans */
   .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .plan { border: 1px solid var(--line); padding: 32px 28px; display: flex; flex-direction: column; }
   .plan.featured { background: var(--fg); color: var(--bg); border-color: var(--fg); }
   .plan.featured p, .plan.featured li, .plan.featured .price { color: #333; }
-  .tag { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); min-height: 18px; }
-  .plan.featured .tag { color: #555; }
+  .tag-top { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); min-height: 18px; }
+  .plan.featured .tag-top { color: #555; }
   .plan h3 { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin: 18px 0 4px; }
   .plan .sub { font-weight: 500; margin-bottom: 18px; }
   .plan p { color: var(--muted); margin-bottom: 20px; }
-  .plan ul { list-style: none; margin-bottom: 28px; flex: 1; }
+  .plan ul { list-style: none; margin-bottom: 20px; flex: 1; }
   .plan li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--muted); }
   .plan.featured li { border-color: #D4D4D4; }
   .price { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+  .see { font-size: 14px; margin-bottom: 18px; text-underline-offset: 4px; }
   .plan .btn { width: 100%; }
   .plan.featured .btn { background: var(--bg); color: var(--fg); border-color: var(--bg); }
 
@@ -148,7 +317,6 @@
   .invalid .choice span { border-color: var(--error); }
 
   .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-  .note { font-size: 13px; color: var(--muted); }
   .status { font-size: 15px; min-height: 24px; }
   .setup {
     border: 1px dashed var(--error); color: var(--error); padding: 14px 18px;
@@ -159,17 +327,33 @@
   footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
   footer .mark { color: var(--fg); }
 
+  @media (max-width: 1000px) {
+    .pillars { grid-template-columns: 1fr 1fr; }
+    .pillars > div:nth-child(3) { padding-left: 0; border-left: 0; }
+    .pillars > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .tier-head { grid-template-columns: 1fr 1fr; }
+    .tier-head div:nth-child(3) { padding-left: 0; border-left: 0; }
+    .tier-head div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
   @media (max-width: 900px) {
-    .grid { grid-template-columns: 1fr; gap: 20px; }
+    .grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
     .three, .plans { grid-template-columns: 1fr; }
     .three > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
     .nav-links a:not(.btn) { display: none; }
+    .platform { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     form { grid-template-columns: 1fr; }
     .hero { padding: 72px 0 64px; }
     section.block { padding: 72px 0; }
     .actions .btn { width: 100%; }
+    .pillars { grid-template-columns: 1fr; }
+    .pillars > div, .pillars > div + div { padding-left: 0; border-left: 0; }
+    .pillars > div + div { border-top: 1px solid var(--line); }
+    .canvas { padding: 24px 18px; scroll-padding-inline: 18px; }
+    .canvas.fit { grid-template-columns: 1fr 1fr; }
+    ul.kit { columns: 1; }
+    .tab { padding: 12px 18px; }
   }
 </style>
 </head>
@@ -179,7 +363,8 @@
   <div class="wrap">
     <a class="mark" href="#top">Native</a>
     <div class="nav-links">
-      <a href="#how">How it works</a>
+      <a href="#proposition">Why Native</a>
+      <a href="#work">The work</a>
       <a href="#plans">Plans</a>
       <a class="btn small" href="#brief">Send a brief</a>
     </div>
@@ -188,45 +373,71 @@
 
 <main id="top">
 
-  <!-- HERO. Edit the words freely. -->
+  <!-- HERO -->
   <header class="hero">
     <div class="wrap">
       <p class="kicker">Native · Creative on subscription</p>
       <h1>Subscribe.<br>Brief.<br>Receive.</h1>
       <p class="lede">AI first in every brief. Human where it counts.</p>
-      <p class="body">A creative team on subscription for growing brands. Send a brief on WhatsApp. Get on-brand work back in days, checked by people before it reaches you.</p>
+      <p class="body">Your brand's creative team, on subscription. Send a brief on WhatsApp. Get on-brand work back in days, checked by people before it reaches you.</p>
       <div class="ctas">
         <a class="btn" href="#brief">Send a brief</a>
-        <a class="btn ghost" href="#plans">See plans</a>
+        <a class="btn ghost" href="#work">See the work</a>
       </div>
     </div>
   </header>
 
-  <!-- WHY -->
-  <section class="block" id="why">
+  <!-- 01 PROPOSITION -->
+  <section class="block" id="proposition">
     <div class="wrap grid">
-      <p class="label"><b>01</b>Why Native</p>
+      <p class="label"><b>01</b>The proposition</p>
       <div>
-        <h2>The old choices<br>don't fit.</h2>
-        <div class="three">
+        <h2>Your brand's creative team.<br>On subscription.</h2>
+        <p class="intro">Growing brands need more creative than ever. Every week, in every format, often in more than one language. <strong>Native is a creative team that runs on AI, follows your brand rules and answers to people.</strong> You brief on WhatsApp. You pay for a plan, not for hours.</p>
+
+        <div class="pillars">
           <div>
-            <h3>Agencies sell hours.</h3>
-            <p>Great work, built for big budgets and long timelines.</p>
+            <span class="num">01</span>
+            <h3>Built on your brand</h3>
+            <p>We start with a brand kit: your tone, colours, claims and rules. Every piece follows it.</p>
           </div>
           <div>
-            <h3>Free tools sell templates.</h3>
-            <p>Fast and cheap. But your brand ends up looking like everyone else's.</p>
+            <span class="num">02</span>
+            <h3>AI speed</h3>
+            <p>Agents do the heavy lifting. Most Light jobs come back in one to two working days.</p>
           </div>
-          <div class="hl">
-            <h3>Native sells outcomes.</h3>
-            <p>Agent speed with agency craft. Every piece built on your own brand rules.</p>
+          <div>
+            <span class="num">03</span>
+            <h3>Human sign-off</h3>
+            <p>A person checks every piece against a checklist before it reaches you.</p>
           </div>
+          <div>
+            <span class="num">04</span>
+            <h3>One plan</h3>
+            <p>Pay for a plan, not for hours. No timesheets. No retainers to negotiate.</p>
+          </div>
+        </div>
+
+        <h3 class="sub-h">How Native compares</h3>
+        <div class="compare-wrap">
+          <table class="compare">
+            <thead>
+              <tr><th scope="col"></th><th scope="col">Traditional agency</th><th scope="col">Free tools</th><th scope="col" class="native">Native</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Speed</th><td>Weeks</td><td>Fast, if you have the time</td><td class="native">Days</td></tr>
+              <tr><th scope="row">On brand</th><td>Yes</td><td>Rarely</td><td class="native">Every piece, from your brand kit</td></tr>
+              <tr><th scope="row">Craft</th><td>High</td><td>Template level</td><td class="native">Agency standard, checked by people</td></tr>
+              <tr><th scope="row">How you pay</th><td>Retainers and hours</td><td>Your own time</td><td class="native">One plan</td></tr>
+              <tr><th scope="row">What you do</th><td>Meetings and decks</td><td>Everything</td><td class="native">Send a WhatsApp brief</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOW -->
+  <!-- 02 HOW IT WORKS -->
   <section class="block" id="how">
     <div class="wrap grid">
       <p class="label"><b>02</b>How it works</p>
@@ -253,15 +464,377 @@
     </div>
   </section>
 
-  <!-- PLANS. Change "Pilot pricing on request" to real prices when approved. -->
+  <!-- 03 THE WORK -->
+  <section class="block" id="work">
+    <div class="wrap grid">
+      <p class="label"><b>03</b>The work</p>
+      <div>
+        <h2>One brand.<br>Three weights of work.</h2>
+        <p class="intro">Here is what each plan makes, shown for one tea brand. Same brand kit, same rules. Different weight of work.</p>
+        <p class="note">Saffron Lane Teas is a fictional brand. All work shown here is illustrative.</p>
+
+        <div class="tabs" role="tablist" aria-label="Sample work by plan">
+          <button class="tab" role="tab" id="tab-light" data-tier="light" aria-controls="panel-light" aria-selected="true">Light<small>Agent-led</small></button>
+          <button class="tab" role="tab" id="tab-middle" data-tier="middle" aria-controls="panel-middle" aria-selected="false" tabindex="-1">Middle<small>Agents and creatives</small></button>
+          <button class="tab" role="tab" id="tab-heavy" data-tier="heavy" aria-controls="panel-heavy" aria-selected="false" tabindex="-1">Heavy<small>Human-led</small></button>
+        </div>
+
+        <!-- LIGHT -->
+        <div class="tier-panel" role="tabpanel" id="panel-light" aria-labelledby="tab-light">
+          <dl class="tier-head">
+            <div><dt>The brief</dt><dd>One master film and one product shot. Diwali is coming.</dd></div>
+            <div><dt>Made by</dt><dd>Agents, working from the brand kit</dd></div>
+            <div><dt>Checked by</dt><dd>A Native producer, against the QA checklist</dd></div>
+            <div><dt>Turnaround</dt><dd>1 to 2 working days per job</dd></div>
+          </dl>
+
+          <div class="samples">
+            <article class="sample">
+              <div class="canvas">
+                <div>
+                  <div class="f paper r916">
+                    <span class="tag">0:00 / 0:06</span>
+                    <p class="big">Second cup?</p>
+                    <div class="cup"></div>
+                    <span class="wm">Saffron Lane</span>
+                  </div>
+                  <p class="frame-label">6s · Hook</p>
+                </div>
+                <div>
+                  <div class="f ink r916">
+                    <span class="tag">0:00 / 0:15</span>
+                    <div class="pack light"><span>Masala Morning</span></div>
+                    <p class="mid">Hand-blended in small batches.</p>
+                    <span class="wm">Saffron Lane</span>
+                  </div>
+                  <p class="frame-label">15s · Story</p>
+                </div>
+                <div>
+                  <div class="f copper r916">
+                    <span class="tag">0:00 / 0:30</span>
+                    <div></div>
+                    <div>
+                      <p class="big">Saffron Lane</p>
+                      <p class="small" style="margin-top:8px">Small-batch Indian teas.<br>Order on our website.</p>
+                    </div>
+                    <span class="wm">End frame</span>
+                  </div>
+                  <p class="frame-label">30s · Close</p>
+                </div>
+              </div>
+              <div class="cap">
+                <div><h4>Reels cut-downs</h4><p>Six vertical cuts from one master film, with captions for sound-off viewing. Shown: one frame from the 6, 15 and 30 second cuts.</p></div>
+                <span class="meta">Playbook: reels-cutdown</span>
+              </div>
+            </article>
+
+            <article class="sample">
+              <div class="canvas fit">
+                <div class="f ink r45">
+                  <span class="tag">1 / 5</span>
+                  <div class="diya"></div>
+                  <p class="big">This Diwali, slow down.</p>
+                </div>
+                <div class="f paper r45">
+                  <span class="tag">2 / 5</span>
+                  <div class="pack"><span>Masala Morning</span></div>
+                  <p class="mid">Warm. Spiced. Unhurried.</p>
+                </div>
+                <div class="f paper r45">
+                  <span class="tag">3 / 5</span>
+                  <div class="pack"><span>Darjeeling<br>First Flush</span></div>
+                  <p class="mid">Single-estate Darjeeling.</p>
+                </div>
+                <div class="f copper r45">
+                  <span class="tag">4 / 5</span>
+                  <p class="big">The gift box.</p>
+                  <p class="small">Two teas. One slower morning.</p>
+                </div>
+                <div class="f ink r45">
+                  <span class="tag">5 / 5</span>
+                  <p class="big" lang="hi">शुभ दीपावली</p>
+                  <div class="row"><p class="small">Gift a slower morning.</p><span class="wm">SL</span></div>
+                </div>
+              </div>
+              <div class="cap">
+                <div><h4>Festive carousel</h4><p>Five slides from one product shot, with a cultural check by a person who celebrates the festival.</p></div>
+                <span class="meta">Playbook: festive-carousel</span>
+              </div>
+            </article>
+
+            <article class="sample">
+              <div class="canvas" style="align-items:flex-end">
+                <div>
+                  <div class="f paper r11" style="width:150px">
+                    <div class="cup sm"></div>
+                    <p class="mid" style="font-size:12px">Some mornings need a second cup.</p>
+                  </div>
+                  <p class="frame-label">1:1</p>
+                </div>
+                <div>
+                  <div class="f paper r45" style="width:150px">
+                    <div class="cup sm"></div>
+                    <p class="mid" style="font-size:12px">Some mornings need a second cup.</p>
+                    <span class="wm">Saffron Lane</span>
+                  </div>
+                  <p class="frame-label">4:5</p>
+                </div>
+                <div>
+                  <div class="f paper r916" style="width:120px">
+                    <span class="wm">Saffron Lane</span>
+                    <div class="cup"></div>
+                    <p class="mid" style="font-size:12px">Some mornings need a second cup.</p>
+                  </div>
+                  <p class="frame-label">9:16</p>
+                </div>
+                <div>
+                  <div class="f paper r169" style="width:260px; flex-direction:row; align-items:center; gap:14px">
+                    <div class="cup xs" style="width:34%"></div>
+                    <div style="flex:1">
+                      <p class="mid" style="font-size:14px">Some mornings need a second cup.</p>
+                      <span class="wm" style="display:block; margin-top:8px">Saffron Lane</span>
+                    </div>
+                  </div>
+                  <p class="frame-label">16:9</p>
+                </div>
+              </div>
+              <div class="cap">
+                <div><h4>Every format</h4><p>One approved key visual, rebuilt for every size it runs in. Nothing stretched, nothing cropped.</p></div>
+                <span class="meta">Playbook: format-resize</span>
+              </div>
+            </article>
+
+            <article class="sample">
+              <div class="canvas">
+                <div>
+                  <div class="f paper r11">
+                    <span class="tag">English</span>
+                    <p class="mid" style="font-size:17px">Some mornings need a second cup.</p>
+                    <span class="wm">Saffron Lane</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="f paper r11">
+                    <span class="tag">हिंदी · Hindi</span>
+                    <p class="mid" lang="hi" style="font-size:17px; line-height:1.4">कुछ सुबहें दूसरी चाय माँगती हैं।</p>
+                    <span class="wm">Saffron Lane</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="f paper r11">
+                    <span class="tag">Hinglish</span>
+                    <p class="mid" style="font-size:17px">Kuch subah second cup maangti hain.</p>
+                    <span class="wm">Saffron Lane</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cap">
+                <div><h4>Language versions</h4><p>The same idea, transcreated, not translated word for word. A native speaker checks every language.</p></div>
+                <span class="meta">Playbook: language-adaptation</span>
+              </div>
+            </article>
+
+            <article class="sample">
+              <div class="canvas">
+                <div>
+                  <div class="f ink r916">
+                    <span class="tag">Status</span>
+                    <div class="diya"></div>
+                    <div>
+                      <p class="mid">Diwali gift boxes are here.</p>
+                      <p class="small" style="margin-top:6px; opacity:.75">Order on our website. T&amp;C apply.</p>
+                    </div>
+                  </div>
+                  <p class="frame-label">Status · 9:16</p>
+                </div>
+                <div>
+                  <div class="chat">
+                    <div class="chat-head"><i></i><div><b>Saffron Lane Teas</b><span>Broadcast</span></div></div>
+                    <div class="bubble">
+                      Diwali gift boxes are here. Masala Morning and Darjeeling First Flush, packed for gifting.<br><br>Order on our website. T&amp;C apply.
+                      <time>9:00 am</time>
+                    </div>
+                  </div>
+                  <p class="frame-label">Broadcast message</p>
+                </div>
+              </div>
+              <div class="cap">
+                <div><h4>WhatsApp pack</h4><p>A Status creative, a chat image and three broadcast messages, ready to send to customers who have opted in.</p></div>
+                <span class="meta">Playbook: whatsapp-promo</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- MIDDLE -->
+        <div class="tier-panel" role="tabpanel" id="panel-middle" aria-labelledby="tab-middle" hidden>
+          <dl class="tier-head">
+            <div><dt>The brief</dt><dd>Launch a new campaign for the winter season.</dd></div>
+            <div><dt>Made by</dt><dd>A creative director sets the idea. Agents produce. A designer finishes.</dd></div>
+            <div><dt>Checked by</dt><dd>The creative director and a Native producer</dd></div>
+            <div><dt>Turnaround</dt><dd>About 1 to 2 weeks</dd></div>
+          </dl>
+
+          <div class="samples">
+            <article class="sample">
+              <div class="canvas">
+                <div class="idea">
+                  <span class="tag">Campaign idea</span>
+                  <h5>The Second Cup.</h5>
+                  <p>Every day has a second-cup moment: the pause after the rush. Saffron Lane owns that pause, across a whole season of content.</p>
+                </div>
+              </div>
+              <div class="cap">
+                <div><h4>The idea</h4><p>Set by a creative director. One thought that every piece of the campaign can carry.</p></div>
+                <span class="meta">Creative-led</span>
+              </div>
+            </article>
+
+            <article class="sample">
+              <div class="canvas">
+                <div class="f paper r11">
+                  <p class="big" style="font-size:30px">6:45 am.</p>
+                  <div class="cup xs" style="margin-left:auto"></div>
+                  <div class="row"><p class="small">First cup.<br>For the day ahead.</p><span class="wm">SL</span></div>
+                </div>
+                <div class="f copper r11">
+                  <p class="big" style="font-size:30px">4:10 pm.</p>
+                  <div class="cup xs" style="margin-left:auto"></div>
+                  <div class="row"><p class="small">Second cup.<br>For the day so far.</p><span class="wm">SL</span></div>
+                </div>
+                <div class="f ink r11">
+                  <p class="big" style="font-size:30px">11:30 pm.</p>
+                  <div class="cup xs" style="margin-left:auto"></div>
+                  <div class="row"><p class="small">One more chapter.<br>One more cup.</p><span class="wm">SL</span></div>
+                </div>
+              </div>
+              <div class="cap">
+                <div><h4>Campaign system</h4><p>One idea, built into a series. Agents produce the variations. A designer finishes every piece.</p></div>
+                <span class="meta">3 of 24 assets</span>
+              </div>
+            </article>
+
+            <article class="sample">
+              <div class="canvas">
+                <table class="cal">
+                  <thead><tr><th>Week</th><th>Mon</th><th>Wed</th><th>Fri</th><th>Sat</th></tr></thead>
+                  <tbody>
+                    <tr><th>1</th><td><span class="chip reel">Reel</span><br>Launch film</td><td><span class="chip">Post</span><br>6:45 am</td><td><span class="chip">Carousel</span><br>How we blend</td><td><span class="chip wa">WhatsApp</span><br>Winter launch</td></tr>
+                    <tr><th>2</th><td><span class="chip reel">Reel</span><br>4:10 pm</td><td><span class="chip">Story</span><br>Poll: your second cup?</td><td><span class="chip">Post</span><br>4:10 pm</td><td><span class="chip wa">WhatsApp</span><br>Reminder</td></tr>
+                    <tr><th>3</th><td><span class="chip reel">Reel</span><br>11:30 pm</td><td><span class="chip">Carousel</span><br>The gift box</td><td><span class="chip">Post</span><br>11:30 pm</td><td><span class="chip">Story</span><br>Behind the blend</td></tr>
+                    <tr><th>4</th><td><span class="chip reel">Reel</span><br>Best of the season</td><td><span class="chip">Post</span><br>Your cups</td><td><span class="chip">Carousel</span><br>Recap</td><td><span class="chip wa">WhatsApp</span><br>Last call</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="cap">
+                <div><h4>Content calendar</h4><p>Four weeks of posts, planned around the idea. Every slot already has a playbook behind it.</p></div>
+                <span class="meta">16 slots</span>
+              </div>
+            </article>
+
+            <article class="sample">
+              <div class="canvas">
+                <ul class="kit">
+                  <li>Key visual <span>every size</span></li>
+                  <li>Launch film cut-downs <span>4 Reels</span></li>
+                  <li>Social posts <span>9</span></li>
+                  <li>Carousels <span>3</span></li>
+                  <li>Story set <span>6 frames</span></li>
+                  <li>WhatsApp pack <span>Status, image, messages</span></li>
+                  <li>Website banner <span>desktop and mobile</span></li>
+                  <li>Language versions <span>Hindi, Hinglish</span></li>
+                </ul>
+              </div>
+              <div class="cap">
+                <div><h4>Launch kit</h4><p>Everything the campaign needs to go live, delivered as one set.</p></div>
+                <span class="meta">Delivered together</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- HEAVY -->
+        <div class="tier-panel" role="tabpanel" id="panel-heavy" aria-labelledby="tab-heavy" hidden>
+          <dl class="tier-head">
+            <div><dt>The brief</dt><dd>Make Saffron Lane a brand people remember, not just a tea they buy.</dd></div>
+            <div><dt>Made by</dt><dd>A senior creative team. AI for storyboards, previews and edit options.</dd></div>
+            <div><dt>Checked by</dt><dd>Senior creative leadership, then the client</dd></div>
+            <div><dt>Turnaround</dt><dd>A few weeks, agreed per project</dd></div>
+          </dl>
+
+          <div class="samples">
+            <article class="sample">
+              <div class="canvas">
+                <div class="platform">
+                  <div>
+                    <span class="tag">Brand platform</span>
+                    <h5>Slow is a flavour.</h5>
+                    <p>In a country that runs on rush, Saffron Lane stands for the few minutes that don't. The pause is part of the taste.</p>
+                  </div>
+                  <ol>
+                    <li>Origin you can taste</li>
+                    <li>Rituals over rush</li>
+                    <li>Small batches, big care</li>
+                  </ol>
+                </div>
+              </div>
+              <div class="cap">
+                <div><h4>Brand platform</h4><p>The idea the brand stands on for years, not one season. Everything in Light and Middle builds on it.</p></div>
+                <span class="meta">Strategy and creative</span>
+              </div>
+            </article>
+
+            <article class="sample">
+              <div class="canvas board">
+                <figure class="shot">
+                  <div class="f ink r169"><div class="v-window"></div><div class="v-kettle"></div><div class="v-counter"></div></div>
+                  <figcaption><b>01</b>5:40 am. A quiet kitchen. Only the kettle.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <div class="f copper r169"><div class="v-leaves"></div></div>
+                  <figcaption><b>02</b>Leaves into the pot. Close, and slow.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <div class="f ink r169"><div class="v-city"></div><div class="v-rush"></div></div>
+                  <figcaption><b>03</b>Outside, the city wakes up. Horns, rush, noise.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <div class="f ink r169" style="justify-content:center"><div class="cup" style="width:34%"></div></div>
+                  <figcaption><b>04</b>Inside, nobody hurries. The pour begins.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <div class="f paper r169"><div class="two-cups"><div class="cup xs"></div><div class="cup xs"></div></div></div>
+                  <figcaption><b>05</b>Two cups. Two people. No phones.</figcaption>
+                </figure>
+                <figure class="shot">
+                  <div class="f ink r169" style="justify-content:center; align-items:center; text-align:center">
+                    <p class="mid" style="font-size:20px">Slow is a flavour.</p>
+                    <span class="wm" style="margin-top:10px">Saffron Lane</span>
+                  </div>
+                  <figcaption><b>06</b>Super and logo. Hold on silence.</figcaption>
+                </figure>
+              </div>
+              <div class="cap">
+                <div><h4>Brand film: The Long Pour</h4><p>A 60-second film. One family keeps a slow morning ritual while the city rushes outside. AI previews let the team test the edit before the shoot.</p></div>
+                <span class="meta">Storyboard · 6 of 14 frames</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 PLANS. Change "Pilot pricing on request" to real prices when approved. -->
   <section class="block" id="plans">
     <div class="wrap grid">
-      <p class="label"><b>03</b>Plans</p>
+      <p class="label"><b>04</b>Plans</p>
       <div>
         <h2>Pick the weight<br>of the work.</h2>
         <div class="plans">
           <article class="plan featured">
-            <p class="tag">Start here</p>
+            <p class="tag-top">Start here</p>
             <h3>Light</h3>
             <p class="sub">Agent-led</p>
             <p>High-volume work, fast. Agents build from your brand rules. A person checks every piece.</p>
@@ -272,11 +845,12 @@
               <li>Hindi and regional language versions</li>
               <li>WhatsApp promo packs</li>
             </ul>
+            <a class="see" href="#work" data-show="light">See Light samples</a>
             <p class="price">Pilot pricing on request</p>
             <a class="btn" href="#brief" data-plan="Light">Brief a Light job</a>
           </article>
           <article class="plan">
-            <p class="tag">&nbsp;</p>
+            <p class="tag-top">&nbsp;</p>
             <h3>Middle</h3>
             <p class="sub">Agents and creatives</p>
             <p>New campaign assets built on your brand. Creatives direct. Agents produce.</p>
@@ -285,11 +859,12 @@
               <li>Product launch kits</li>
               <li>Monthly content calendars</li>
             </ul>
+            <a class="see" href="#work" data-show="middle">See Middle samples</a>
             <p class="price">Pilot pricing on request</p>
             <a class="btn ghost" href="#brief" data-plan="Middle">Brief a Middle job</a>
           </article>
           <article class="plan">
-            <p class="tag">&nbsp;</p>
+            <p class="tag-top">&nbsp;</p>
             <h3>Heavy</h3>
             <p class="sub">Human-led</p>
             <p>Big ideas, films and launches. Senior creative teams, with AI as the tool.</p>
@@ -298,6 +873,7 @@
               <li>Launch campaigns</li>
               <li>Brand platforms</li>
             </ul>
+            <a class="see" href="#work" data-show="heavy">See Heavy samples</a>
             <p class="price">Pilot pricing on request</p>
             <a class="btn ghost" href="#brief" data-plan="Heavy">Brief a Heavy job</a>
           </article>
@@ -306,10 +882,10 @@
     </div>
   </section>
 
-  <!-- BRIEF FORM -->
+  <!-- 05 BRIEF FORM -->
   <section class="block" id="brief">
     <div class="wrap grid">
-      <p class="label"><b>04</b>Brief us</p>
+      <p class="label"><b>05</b>Brief us</p>
       <div>
         <h2>Brief us in<br>five minutes.</h2>
         <div class="setup" id="setup" role="note">
@@ -320,7 +896,7 @@
           <div class="field" data-required>
             <label for="name">Your name <span class="req">*</span></label>
             <input type="text" id="name" name="name" autocomplete="name">
-            <p class="err" id="name-err">Please add your name.</p>
+            <p class="err">Please add your name.</p>
           </div>
           <div class="field" data-required>
             <label for="business">Brand or business <span class="req">*</span></label>
@@ -440,6 +1016,28 @@
   const PLACEHOLDER = NATIVE.whatsapp === "910000000000" || NATIVE.email === "native@example.com";
   if (PLACEHOLDER) document.getElementById("setup").style.display = "block";
 
+  /* ---------- Sample work tabs ---------- */
+  const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+  function showTier(tier, focus) {
+    tabs.forEach(tab => {
+      const on = tab.dataset.tier === tier;
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+      document.getElementById("panel-" + tab.dataset.tier).hidden = !on;
+      if (on && focus) tab.focus();
+    });
+  }
+  tabs.forEach(tab => tab.addEventListener("click", () => showTier(tab.dataset.tier)));
+  document.querySelector('[role="tablist"]').addEventListener("keydown", e => {
+    const i = tabs.findIndex(t => t.getAttribute("aria-selected") === "true");
+    if (e.key === "ArrowRight") { e.preventDefault(); showTier(tabs[(i + 1) % tabs.length].dataset.tier, true); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); showTier(tabs[(i - 1 + tabs.length) % tabs.length].dataset.tier, true); }
+  });
+  document.querySelectorAll("[data-show]").forEach(link => {
+    link.addEventListener("click", () => showTier(link.dataset.show));
+  });
+
+  /* ---------- Brief form ---------- */
   const form = document.getElementById("briefForm");
   const statusEl = document.getElementById("status");
   const need = document.getElementById("need");
